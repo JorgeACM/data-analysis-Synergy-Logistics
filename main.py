@@ -1,5 +1,24 @@
 import csv
 
+def valor_rutas(ruta):
+    sum = 0
+    for country in ruta:
+        sum += country[2]
+    print(sum)
+    porcentaje = sum*.8
+    print('por', porcentaje)
+    cont =0
+    sum1 = 0
+    for country in ruta:
+        sum1 += country [2]
+        if sum1 >= porcentaje:
+            break
+        cont += 1
+    print(sum1)
+    porc = sum1*100/sum
+    print(porc)
+    return ruta[:cont+1]
+
 def comparacion_rutas(lista1, lista2, col):
     # Sumatoria de la primer lista
     sum1 = 0
@@ -48,7 +67,9 @@ def sort_by_keys(data, cols):
     for row in data:
         vals = []
         for col in cols:
-            vals.append(row[col])
+            # if type(row[col]) is int:
+            #     row[col] = str(row[col])
+            vals.append(str(row[col]))
         key = '-'.join(vals)
         if key not in datos:
             datos[key] = [row]
@@ -94,14 +115,21 @@ def main():
     # Opción 2) Medios de transporte utilizado
     # 3 medios de transporte más importantes de acuerdo al valor de las importaciones y exportaciones
     db_transport = sort_by_keys(db, [7])
-    print(rutas_transitadas(db_transport,None, 2, False))
+    # print(rutas_transitadas(db_transport,None, 2, False))
     top_transports = rutas_transitadas(db_transport, 3,2, True)
     print(top_transports)
     last_transports = rutas_transitadas(db_transport, 1, 2, False)
     print(last_transports)
-
+    # db_year = sort_by_keys(db, [4])
+    # print(db_year.keys())
     # Opción 3) Valor total de importaciones y exportaciones
+    print("Opcion 3")
+    db_export = sort_by_keys(db, [2])
+    db_export = rutas_transitadas(db_export, None, 2, True)
     
+    print(db_export)   
+    db_export_8 = valor_rutas(db_export)
+    print(db_export_8)
     
             
 
