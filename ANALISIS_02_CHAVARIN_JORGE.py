@@ -346,7 +346,7 @@ def main():
         if 'China' in ruta:
             for rutita in datos_pais[ruta]:
                 tipo += rutita[9]
-    print(tipo)
+    print('Valor de China $',tipo)
 
     # Opción 2) Medios de transporte utilizado
     # 3 medios de transporte más importantes de acuerdo al valor de las importaciones y exportaciones
